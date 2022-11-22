@@ -39,7 +39,7 @@ export default {
     };
   },
   computed: {
-    ...mapState(["accessToken", "user"])
+    ...mapState(["accessToken"])
   },
   methods: {
     ...mapActions(["login"]),
@@ -51,7 +51,11 @@ export default {
       }).then(response => console.log(response));
     },
     generalLogin() {
-      this.login(this.userinput);
+      console.log("user in Login.vue ::", this.user);
+      this.login(this.user);
+    },
+    moveToMain() {
+      this.$router.push("/");
     }
   }
 };

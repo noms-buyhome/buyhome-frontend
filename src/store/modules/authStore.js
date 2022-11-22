@@ -1,4 +1,4 @@
-import http from "@/api/http";
+import { generalLogin, kakaoLogin } from "@/api/user";
 
 const authStore = {
   state: {
@@ -23,12 +23,12 @@ const authStore = {
   },
   actions: {
     login(context, payload) {
-      http.post("auth/login", payload).then(({ data }) => {
-        console.log("data from generalLogin :: ", data);
-        const accessToken = data.access;
-        context.commit("setAccessToken", accessToken);
+      generalLogin(payload, ({ data }) => {
+        console.log(data);
+        context.commit("setAccessToken", data.access);
       });
-    }
+    },
+    kakaoLogin(context) {}
   }
 };
 export default authStore;
