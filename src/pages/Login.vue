@@ -28,7 +28,6 @@
 
 <script>
 import { mapState, mapActions } from "vuex";
-
 export default {
   data() {
     return {
@@ -43,12 +42,15 @@ export default {
   },
   methods: {
     ...mapActions(["login"]),
-    kakaoLogin() {
-      window.Kakao.init("1abf7bc3180b84830c14d42286c23937");
+    async kakaoLogin() {
+      Kakao.init("1abf7bc3180b84830c14d42286c23937");
 
-      window.Kakao.Auth.authorize({
-        redirectUri: `http://localhost:8080/api/auth/login?type=kakao`
-      }).then(response => console.log(response));
+      Kakao.Auth.authorize({
+        redirectUri: `http://localhost:8080/api/auth/login?type=kakao`,
+        prompts: "login"
+      }).then(response => {
+        console.log(response);
+      });
     },
     generalLogin() {
       console.log("user in Login.vue ::", this.user);
