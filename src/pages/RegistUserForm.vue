@@ -58,8 +58,17 @@ export default {
     createUser() {
       http
         .post("/auth/regist", this.user)
-        .then(() => alert("가입 되었습니다."))
-        .catch(({ response }) => alert(response.data));
+        .then(() => {
+          alert("가입 되었습니다.");
+          this.moveToLogin();
+        })
+        .catch(error => {
+          console.log(error);
+          alert(error);
+        });
+    },
+    moveToLogin() {
+      this.$router.push({ name: "login" });
     }
   }
 };

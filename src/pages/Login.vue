@@ -55,6 +55,7 @@ export default {
     generalLogin() {
       console.log("user in Login.vue ::", this.user);
       this.login(this.user);
+      this.moveToMain();
     },
     moveToMain() {
       this.$router.push("/");

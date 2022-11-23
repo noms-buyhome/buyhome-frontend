@@ -1,31 +1,23 @@
-import { generalLogin, kakaoLogin } from "@/api/user";
-
+import { generalLogin, kakaoLogin } from "@/api/authRequest";
 const authStore = {
   state: {
-    accessToken: "",
-    user: {}
+    accessToken: ""
   },
   getters: {
     getAccessToken: function(state) {
       return state.accessToken;
-    },
-    getUser: function(state) {
-      return state.user;
     }
   },
   mutations: {
-    setAccessToken: function(state, payload) {
+    SET_ACCESSTOKEN(state, payload) {
       state.accessToken = payload;
-    },
-    setUser(state, payload) {
-      state.user = payload;
     }
   },
   actions: {
     login(context, payload) {
       generalLogin(payload, ({ data }) => {
         console.log(data);
-        context.commit("setAccessToken", data.access);
+        context.commit("SET_ACCESSTOKEN", data.access);
       });
     },
     kakaoLogin(context) {}
