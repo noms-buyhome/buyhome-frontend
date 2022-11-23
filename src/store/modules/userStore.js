@@ -1,4 +1,5 @@
-import { findMe, update } from "@/api/userRequest";
+import { findMe, update, remove } from "@/api/userRequest";
+import { authStore } from "./authStore";
 
 const userStore = {
   state: {
@@ -27,13 +28,21 @@ const userStore = {
       );
     },
     actionUpdate(context, payload) {
-      console.log("outgoing data in action update :: ", payload);
       update(
         payload,
-        ({ data }) => {
-          console.log("after update :: ", data);
-        },
+        () => {},
         error => console.log("error in update :: ", error)
+      );
+    },
+    actionRemove(context, payload) {
+      remove(
+        payload,
+        () => {
+          alert("회원이 삭제되었습니다.");
+          context.commit("SET_USER", {});
+          context.commit("SET_ACCESSTOKEN", null);
+        },
+        error => console.log("error in delete :: ", error)
       );
     }
   }

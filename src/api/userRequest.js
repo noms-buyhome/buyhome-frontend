@@ -21,4 +21,12 @@ async function update(payload, success, fail) {
     .catch(fail);
 }
 
-export { findMe, update };
+async function remove(payload, success, fail) {
+  const header = authHeader();
+  await http
+    .delete(`/user/${payload}`, { headers: header })
+    .then(success)
+    .catch(fail);
+}
+
+export { findMe, update, remove };
