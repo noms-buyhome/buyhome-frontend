@@ -39,14 +39,17 @@
       </div>
     </div>
 
-    <base-button slot="footer" type="primary" fill v-on:click="updateUser"
-      >Save</base-button
+    <base-button type="primary" fill v-on:click="updateUser"
+      >Update</base-button
     >
+    <base-button type="danger" v-on:click="removeUser">Delete</base-button>
   </card>
 </template>
 <script>
 import { mapActions } from "vuex";
+import BaseButton from "../../components/BaseButton.vue";
 export default {
+  components: { BaseButton },
   props: {
     model: {
       type: Object,
@@ -56,9 +59,16 @@ export default {
     }
   },
   methods: {
-    ...mapActions(["actionUpdate"]),
+    ...mapActions(["actionUpdate", "actionRemove"]),
     updateUser() {
       this.actionUpdate(this.model);
+    },
+    removeUser() {
+      this.actionRemove(this.model.id);
+      this.moveToLogin();
+    },
+    moveToLogin() {
+      this.$router.push({ name: "login" });
     }
   }
 };
