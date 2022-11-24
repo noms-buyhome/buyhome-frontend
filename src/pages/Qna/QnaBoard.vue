@@ -13,7 +13,7 @@
         <td v-on:click="moveToDetail(row.id)">{{ row.title }}</td>
         <td>{{ row.author.nickname }}</td>
         <td>{{ row.createdTime }}</td>
-        <td v-if="isAuthor(row)" class="td-actions text-right">
+        <!-- <td v-if="isAuthor(row)" class="td-actions text-right">
           <base-button type="success" size="sm" icon>
             <i class="tim-icons icon-settings"></i>
           </base-button>
@@ -25,7 +25,7 @@
           >
             <i class="tim-icons icon-simple-remove"></i>
           </base-button>
-        </td>
+        </td> -->
       </template>
     </base-table>
     <base-button v-on:click="moveToRegist">질문 등록</base-button>
@@ -63,12 +63,16 @@ export default {
     moveToRegist() {
       this.$router.push({ name: "qnaRegist" });
     },
+    movetoList() {
+      this.$router.push({ name: "qna" });
+    },
     isAuthor(question) {
       return question.author.id === this.getCurrentUser.id;
     },
     deleteQuestion(questionId) {
       console.log("deleteQuestion call::");
       this.actionDeleteQuestion(questionId);
+      this.movetoList();
     }
   }
 };

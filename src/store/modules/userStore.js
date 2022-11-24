@@ -20,6 +20,7 @@ const userStore = {
       console.log("user profile call ::");
       findMe(
         ({ data }) => {
+          console.log("result in action findMe ::", data);
           context.commit("SET_CURRENT_USER", data);
         },
         function(error) {
