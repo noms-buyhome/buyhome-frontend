@@ -25,6 +25,7 @@ const userStore = {
         },
         function(error) {
           console.log("error in action findMe :: ", error);
+          alert(error.response.data.message);
         }
       );
     },
@@ -32,7 +33,10 @@ const userStore = {
       update(
         payload,
         () => {},
-        error => console.log("error in update :: ", error)
+        error => {
+          console.log("error in update :: ", error);
+          alert(error.response.data.message);
+        }
       );
     },
     actionRemove(context, payload) {
@@ -43,7 +47,10 @@ const userStore = {
           context.commit("SET_CURRENT_USER", {});
           context.commit("SET_ACCESSTOKEN", null);
         },
-        error => console.log("error in delete :: ", error)
+        error => {
+          console.log("error in delete :: ", error);
+          alert(error.response.data.message);
+        }
       );
     }
   }

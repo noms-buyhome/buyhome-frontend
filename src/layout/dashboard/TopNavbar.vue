@@ -39,7 +39,6 @@
       <collapse-transition>
         <div class="collapse navbar-collapse show" v-show="showMenu">
           <ul class="navbar-nav" :class="$rtl.isRTL ? 'mr-auto' : 'ml-auto'">
-            
             <base-dropdown
               tag="li"
               :menu-on-right="!$rtl.isRTL"
@@ -59,7 +58,7 @@
                 </div>
                 <b class="caret d-lg-block d-xl-block"></b>
                 <p class="d-lg-block">
-                  {{getCurrentUser.nickname}}
+                  {{ nickname }}
                 </p>
               </a>
               <div v-if="isLogin">
@@ -71,11 +70,13 @@
                 </li>
                 <div class="dropdown-divider"></div>
                 <li class="nav-link">
-                  <a href="#" v-on:click="logout" class="nav-item dropdown-item">Log out</a>
+                  <a href="#" v-on:click="logout" class="nav-item dropdown-item"
+                    >Log out</a
+                  >
                 </li>
               </div>
               <div v-else>
-                <a v-on:click="$router.push({name:'login'})">Login</a>
+                <a v-on:click="$router.push({ name: 'login' })">Login</a>
               </div>
             </base-dropdown>
           </ul>
@@ -102,7 +103,10 @@ export default {
     isRTL() {
       return this.$rtl.isRTL;
     },
-    ...mapGetters(["getCurrentUser","isLogin"]),
+    ...mapGetters(["getCurrentUser", "isLogin"]),
+    nickname() {
+      return this.getCurrentUser == null ? "" : this.getCurrentUser.nickname;
+    }
   },
   data() {
     return {
@@ -112,6 +116,7 @@ export default {
       searchQuery: ""
     };
   },
+
   methods: {
     ...mapActions(["logout"]),
     capitalizeFirstLetter(string) {

@@ -34,11 +34,15 @@ const qnaStore = {
       searchAll(payload, ({ data }) => {
         context.commit("RESET_QNA_LIST", data);
       }),
-        error => {};
+        error => {
+          alert(error.response.data.message);
+        };
     },
     actionFindById(context, payload) {
       findById(payload, ({ data }) => context.commit("SET_QNA", data)),
-        error => {};
+        error => {
+          alert(error.response.data.message);
+        };
     },
     actionCreateAnswer(context, payload) {
       const questionId = payload.questionId;
@@ -49,7 +53,9 @@ const qnaStore = {
         ({ data }) => {
           this.actionFindById(context, questionId);
         },
-        error => {}
+        error => {
+          alert(error.response.data.message);
+        }
       );
     },
     actionUpdateAnswer(context, answer) {
@@ -60,6 +66,7 @@ const qnaStore = {
         },
         error => {
           console.log("error in actionUpdate :: ", error);
+          alert(error.response.data.message);
         }
       );
     },
@@ -74,6 +81,7 @@ const qnaStore = {
         },
         error => {
           console.log("error in createQuestion action :: ", error);
+          alert(error.response.data.message);
         }
       );
     },
@@ -82,7 +90,8 @@ const qnaStore = {
         payload,
         ({ data }) => {},
         error => {
-          console.log("error in deleteQuestion action :: ", error);
+          console.log("error in deleteQuestion action :: ", error.response);
+          alert(error.response.data.message);
         }
       );
     }
