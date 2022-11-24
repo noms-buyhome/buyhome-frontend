@@ -8,14 +8,14 @@
       <div class="block block-four"></div>
       <a href="#">
         <img class="avatar" src="img/anime6.png" alt="..." />
-        <h5 class="title">{{ user.username }}</h5>
+        <h5 class="title" v-once>{{ user.username }}</h5>
       </a>
-      <p class="description">
+      <p class="description" v-once>
         {{ user.nickname }}
       </p>
     </div>
     <p></p>
-    <p class="card-description">
+    <p class="card-description" v-once>
       {{ user.createdTime }}
     </p>
   </card>
