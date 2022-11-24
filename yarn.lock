@@ -2979,7 +2979,7 @@
   "resolved" "https://registry.npmjs.org/deepmerge/-/deepmerge-1.5.2.tgz"
   "version" "1.5.2"
 
-"deepmerge@^4.2.0":
+"deepmerge@^4.2.0", "deepmerge@^4.2.2":
   "integrity" "sha512-FJ3UgI4gIl+PHZm53knsuSFpE+nESMr7M4v9QcgB7S63Kj/6WqMiFQJpBBYz1Pt+66bZpP3Q7Lye0Oo9MPKEdg=="
   "resolved" "https://registry.npmjs.org/deepmerge/-/deepmerge-4.2.2.tgz"
   "version" "4.2.2"
@@ -7583,6 +7583,11 @@
     "array-reduce" "~0.0.0"
     "jsonify" "~0.0.0"
 
+"shvl@^2.0.3":
+  "integrity" "sha512-V7C6S9Hlol6SzOJPnQ7qzOVEWUQImt3BNmmzh40wObhla3XOYMe4gGiYzLrJd5TFa+cI2f9LKIRJTTKZSTbWgw=="
+  "resolved" "https://registry.npmjs.org/shvl/-/shvl-2.0.3.tgz"
+  "version" "2.0.3"
+
 "signal-exit@^3.0.0", "signal-exit@^3.0.2":
   "integrity" "sha512-meQNNykwecVxdu1RlYMKpQx4+wefIYpmxi6gexo/KAbwquJrBUrBmKYJrE8KFkVQAAVWEnwNdu21PgrD77J3xA=="
   "resolved" "https://registry.npmjs.org/signal-exit/-/signal-exit-3.0.2.tgz"
@@ -8690,7 +8695,15 @@
   "resolved" "https://registry.npmjs.org/vue2-transitions/-/vue2-transitions-0.3.0.tgz"
   "version" "0.3.0"
 
-"vuex@^3.6.2":
+"vuex-persistedstate@^4.1.0":
+  "integrity" "sha512-3SkEj4NqwM69ikJdFVw6gObeB0NHyspRYMYkR/EbhR0hbvAKyR5gksVhtAfY1UYuWUOCCA0QNGwv9pOwdj+XUQ=="
+  "resolved" "https://registry.npmjs.org/vuex-persistedstate/-/vuex-persistedstate-4.1.0.tgz"
+  "version" "4.1.0"
+  dependencies:
+    "deepmerge" "^4.2.2"
+    "shvl" "^2.0.3"
+
+"vuex@^3.0 || ^4.0.0-rc", "vuex@^3.6.2":
   "integrity" "sha512-ETW44IqCgBpVomy520DT5jf8n0zoCac+sxWnn+hMe/CzaSejb/eVw2YToiXYX+Ex/AuHHia28vWTq4goAexFbw=="
   "resolved" "https://registry.npmjs.org/vuex/-/vuex-3.6.2.tgz"
   "version" "3.6.2"
