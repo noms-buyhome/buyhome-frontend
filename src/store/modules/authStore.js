@@ -1,4 +1,5 @@
 import { generalLogin, kakaoLogin } from "@/api/authRequest";
+
 const authStore = {
   state: {
     accessToken: ""
@@ -15,10 +16,14 @@ const authStore = {
   },
   actions: {
     login(context, payload) {
-      generalLogin(payload, ({ data }) => {
-        console.log(data);
-        context.commit("SET_ACCESSTOKEN", data.access);
-      });
+      generalLogin(
+        payload,
+        ({ data }) => {
+          context.commit("SET_ACCESSTOKEN", data.access);
+          context.dispatch("actionUserProfile");
+        },
+        error => console.log("error in login ::", error)
+      );
     },
     kakaoLogin(context) {}
   }

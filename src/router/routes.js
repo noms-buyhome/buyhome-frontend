@@ -41,16 +41,21 @@ const routes = [
           {
             path: "/",
             name: "qnaList",
-            component: ()=>import("@/pages/Qna/QnaBoard.vue")
+            component: () => import("@/pages/Qna/QnaBoard.vue")
           },
           {
             path: ":qnaId",
             name: "qnaDetail",
-            component: ()=>import("@/pages/Qna/QnaDetail.vue")
+            component: () => import("@/pages/Qna/QnaDetail.vue")
           },
+          {
+            path: "/regist",
+            name: "qnaRegist",
+            component: () => import("@/pages/Qna/QnaRegist.vue")
+          }
         ]
       },
-      
+
       {
         path: "dashboard",
         name: "dashboard",

@@ -3,7 +3,8 @@ import {
   findById,
   createAnswer,
   updateAnswer,
-  deleteAnswer
+  deleteAnswer,
+  createQuestion
 } from "@/api/qnaRequest";
 
 const qnaStore = {
@@ -63,6 +64,17 @@ const qnaStore = {
     },
     actionDeleteAnswer(context, answer) {
       deleteAnswer(answer, ({ data }) => {});
+    },
+    actionCreateQuestion(context, payload) {
+      createQuestion(
+        payload,
+        ({ data }) => {
+          this.actionFindById(context, questionId);
+        },
+        error => {
+          console.log("error in createQuestion action :: ", error);
+        }
+      );
     }
   }
 };

@@ -21,6 +21,26 @@ async function findById(payload, success, fail) {
     .catch(fail);
 }
 
+async function createQuestion(payload, success, fail) {
+  const header = authHeader();
+  await http
+    .post(`/board/qna`, payload, {
+      headers: header
+    })
+    .then(success)
+    .catch(fail);
+}
+
+async function deleteQuestion(payload, success, fail) {
+  const header = authHeader();
+  await http
+    .delete(`/board/qna/${payload}`, {
+      headers: header
+    })
+    .then(success)
+    .catch(fail);
+}
+
 async function createAnswer(questionId, answer, success, fail) {
   const header = authHeader();
   console.log("answer in createAnswer request :: ", answer);
@@ -54,4 +74,12 @@ async function deleteAnswer(answerId, success, fail) {
     .catch(fail);
 }
 
-export { searchAll, findById, createAnswer, updateAnswer, deleteAnswer };
+export {
+  searchAll,
+  findById,
+  createQuestion,
+  deleteQuestion,
+  createAnswer,
+  updateAnswer,
+  deleteAnswer
+};
