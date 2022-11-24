@@ -19,7 +19,7 @@
       </base-input>
     </div>
     <base-button v-on:click="generalLogin">로그인</base-button>
-    <base-button>회원가입</base-button>
+    <base-button v-on:click="moveToResist">회원가입</base-button>
     <button v-on:click="kakaoLogin">
       <img src="@/assets/images/kakao_login_medium_wide.png" />
     </button>
@@ -59,6 +59,9 @@ export default {
     },
     moveToMain() {
       this.$router.push("/");
+    },
+    moveToResist() {
+      this.$router.push({ name: "regist" });
     }
   }
 };
