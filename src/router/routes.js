@@ -34,6 +34,29 @@ const routes = [
         component: () => import("@/pages/Login.vue")
       },
       {
+        path: "qna",
+        name: "qna",
+        component: () => import("@/pages/Qna.vue"),
+        children: [
+          {
+            path: "/",
+            name: "qnaList",
+            component: () => import("@/pages/Qna/QnaBoard.vue")
+          },
+          {
+            path: ":qnaId",
+            name: "qnaDetail",
+            component: () => import("@/pages/Qna/QnaDetail.vue")
+          },
+          {
+            path: "/regist",
+            name: "qnaRegist",
+            component: () => import("@/pages/Qna/QnaRegist.vue")
+          }
+        ]
+      },
+
+      {
         path: "dashboard",
         name: "dashboard",
         component: Dashboard
