@@ -48,6 +48,7 @@ export default {
         this.question.author
       );
       this.actionCreateQuestion(this.question);
+      this.moveToList();
     }
   }
 };

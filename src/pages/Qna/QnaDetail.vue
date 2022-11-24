@@ -8,8 +8,7 @@
       <blockquote class="blockquote mb-0">
         <p class="card-text">{{ qna.content }}</p>
       </blockquote>
-      <a href="#" class="card-link">Card link</a>
-      <a href="#" class="card-link">Another link</a>
+      <button v-on:click="deleteQuestion(qna.id)">삭제</button>
       <p class="text-right">{{ qna.createdTime }}</p>
     </card>
     <div v-if="answers">
@@ -88,7 +87,8 @@ export default {
     ...mapActions([
       "actionFindById",
       "actionCreateAnswer",
-      "actionUserProfile"
+      "actionUserProfile",
+      "actionDeleteQuestion"
     ]),
     moveToList() {
       this.$router.push({ name: "qnaList" });
@@ -113,6 +113,10 @@ export default {
     },
     clickUpdate() {
       this.isClicked = !this.isClicked;
+    },
+    deleteQuestion(questionId) {
+      this.actionDeleteQuestion(questionId);
+      this.moveToList();
     }
   }
 };

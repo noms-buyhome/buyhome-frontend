@@ -8,39 +8,31 @@
       <div class="block block-four"></div>
       <a href="#">
         <img class="avatar" src="img/anime6.png" alt="..." />
-        <h5 class="title">{{ user.username }}</h5>
+        <h5 class="title" v-once>{{ user.username }}</h5>
       </a>
-      <p class="description">
+      <p class="description" v-once>
         {{ user.nickname }}
       </p>
     </div>
     <p></p>
-    <p class="card-description">
+    <p class="card-description" v-once>
       {{ user.createdTime }}
     </p>
-    <div slot="footer" class="button-container">
-      <base-button icon round class="btn-facebook">
-        <i class="fab fa-facebook"></i>
-      </base-button>
-      <base-button icon round class="btn-twitter">
-        <i class="fab fa-twitter"></i>
-      </base-button>
-      <base-button icon round class="btn-google">
-        <i class="fab fa-google-plus"></i>
-      </base-button>
-    </div>
   </card>
 </template>
 <script>
 export default {
   props: {
     user: {
-      type: Object,
-      default: () => {
-        return {};
-      }
+      username: "",
+      nickname: "",
+      createdTime: ""
     }
-  }
+  },
+  created() {
+    console.log("user in card :: ", this.user);
+  },
+  methods: {}
 };
 </script>
 <style></style>
