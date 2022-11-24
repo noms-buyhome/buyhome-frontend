@@ -32,11 +32,11 @@ async function createAnswer(questionId, answer, success, fail) {
     .catch(fail);
 }
 
-async function updateAnswer(questionId, answer, success, fail) {
+async function updateAnswer(answer, success, fail) {
   const header = authHeader();
   console.log("answer in updateAnswer request :: ", answer);
   await http
-    .put(`/board/qna/${questionId}/answers/${answer.id}`, answer, {
+    .put(`/board/qna/1/answers/${answer.id}`, answer, {
       headers: header
     })
     .then(success)

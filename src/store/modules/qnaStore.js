@@ -5,6 +5,7 @@ import {
   updateAnswer,
   deleteAnswer
 } from "@/api/qnaRequest";
+
 const qnaStore = {
   state: {
     qna: {},
@@ -49,14 +50,15 @@ const qnaStore = {
         error => {}
       );
     },
-    actionUpdateAnswer(context, questionId, answer) {
+    actionUpdateAnswer(context, answer) {
       updateAnswer(
-        questionId,
         answer,
         ({ data }) => {
-          this.actionFindById(context, questionId);
+          console.log("result in actionUpdate :: ", data);
         },
-        error => {}
+        error => {
+          console.log("error in actionUpdate :: ", error);
+        }
       );
     },
     actionDeleteAnswer(context, answer) {

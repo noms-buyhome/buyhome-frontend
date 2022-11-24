@@ -12,17 +12,12 @@
       <a href="#" class="card-link">Another link</a>
       <p class="text-right">{{ qna.createdTime }}</p>
     </card>
-    <div v-if="qna.answers">
-      <card v-for="(answer, index) in qna.answers" :key="index">
-        <h4 class="card-title">{{ answer.title }}</h4>
-        <h6 class="card-subtitle mb-2 text-muted text-right">
-          {{ answer.author.nickname }}
-        </h6>
-        <p class="card-text">{{ answer.content }}</p>
-        <a class="card-link">수정</a>
-        <a v-on:click="deleteAnswer(answer.id)">삭제</a>
-        <p class="text-right">{{ answer.createdTime }}</p>
-      </card>
+    <div v-if="answers">
+      <Answer
+        v-for="(answer, index) in answers"
+        :key="index"
+        v-bind:answer="answer"
+      />
     </div>
     <div v-else><p>답변이 없습니다.</p></div>
     <!-- 답변 작성란 -->
@@ -54,9 +49,9 @@
 import { mapActions, mapGetters } from "vuex";
 import BaseButton from "../../components/BaseButton.vue";
 import BaseInput from "../../components/Inputs/BaseInput.vue";
-
+import Answer from "./Answer.vue";
 export default {
-  components: { BaseButton, BaseInput },
+  components: { BaseButton, BaseInput, Answer },
   data() {
     return {
       columns: ["id", "title", "author", "created", "actions"],
@@ -76,15 +71,24 @@ export default {
     },
     currentUser() {
       return this.getCurrentUser;
+    },
+    answers() {
+      return this.qna.answers;
     }
   },
+  // watch: {
+  //   qna: {
+  //     deep: true,
+  //     handler() {
+  //       this.actionFindById(this.$route.params.qnaId);
+  //     }
+  //   }
+  // },
   methods: {
     ...mapActions([
       "actionFindById",
       "actionCreateAnswer",
-      "actionUserProfile",
-      "actionUpdateAnswer",
-      "actionDeleteAnswer"
+      "actionUserProfile"
     ]),
     moveToList() {
       this.$router.push({ name: "qnaList" });
@@ -99,21 +103,16 @@ export default {
       }
       this.actionUserProfile();
       this.newAnswer.author = this.currentUser;
-
       this.actionCreateAnswer({
         questionId: this.qna.id,
         answer: this.newAnswer
       });
     },
-    updateAnswer() {
-      this.actionUpdateAnswer(this.qna.id, this.selectedAnswer);
-    },
-    showUpdateInput(answer) {
-      this.isClicked = true;
-      this.selectedAnswer = answer;
-    },
     deleteAnswer(answerId) {
       this.actionDeleteAnswer(answerId);
+    },
+    clickUpdate() {
+      this.isClicked = !this.isClicked;
     }
   }
 };
