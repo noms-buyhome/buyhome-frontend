@@ -24,7 +24,7 @@ export default {
   computed: {
     ...mapGetters(["getCurrentUser"]),
     user() {
-      return this.getUser;
+      return this.getCurrentUser;
     }
   },
   data() {

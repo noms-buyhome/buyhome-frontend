@@ -18,29 +18,21 @@
     <p class="card-description">
       {{ user.createdTime }}
     </p>
-    <div slot="footer" class="button-container">
-      <base-button icon round class="btn-facebook">
-        <i class="fab fa-facebook"></i>
-      </base-button>
-      <base-button icon round class="btn-twitter">
-        <i class="fab fa-twitter"></i>
-      </base-button>
-      <base-button icon round class="btn-google">
-        <i class="fab fa-google-plus"></i>
-      </base-button>
-    </div>
   </card>
 </template>
 <script>
 export default {
   props: {
     user: {
-      type: Object,
-      default: () => {
-        return {};
-      }
+      username: "",
+      nickname: "",
+      createdTime: ""
     }
-  }
+  },
+  created() {
+    console.log("user in card :: ", this.user);
+  },
+  methods: {}
 };
 </script>
 <style></style>
