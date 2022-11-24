@@ -4,7 +4,8 @@ import {
   createAnswer,
   updateAnswer,
   deleteAnswer,
-  createQuestion
+  createQuestion,
+  deleteQuestion
 } from "@/api/qnaRequest";
 
 const qnaStore = {
@@ -73,6 +74,15 @@ const qnaStore = {
         },
         error => {
           console.log("error in createQuestion action :: ", error);
+        }
+      );
+    },
+    actionDeleteQuestion(context, payload) {
+      deleteQuestion(
+        payload,
+        ({ data }) => {},
+        error => {
+          console.log("error in deleteQuestion action :: ", error);
         }
       );
     }

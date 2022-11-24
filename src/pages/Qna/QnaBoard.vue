@@ -13,14 +13,16 @@
         <td v-on:click="moveToDetail(row.id)">{{ row.title }}</td>
         <td>{{ row.author.nickname }}</td>
         <td>{{ row.createdTime }}</td>
-        <td class="td-actions text-right">
-          <base-button type="info" size="sm" icon>
-            <i class="tim-icons icon-single-02"></i>
-          </base-button>
+        <td v-if="isAuthor(row)" class="td-actions text-right">
           <base-button type="success" size="sm" icon>
             <i class="tim-icons icon-settings"></i>
           </base-button>
-          <base-button type="danger" size="sm" icon>
+          <base-button
+            v-on:click="deleteQuestion(row.id)"
+            type="danger"
+            size="sm"
+            icon
+          >
             <i class="tim-icons icon-simple-remove"></i>
           </base-button>
         </td>
@@ -48,18 +50,25 @@ export default {
     this.actionSearchAll();
   },
   computed: {
-    ...mapGetters(["getQnaList"]),
+    ...mapGetters(["getQnaList", "getCurrentUser"]),
     qnaList() {
       return this.getQnaList;
     }
   },
   methods: {
-    ...mapActions(["actionSearchAll"]),
+    ...mapActions(["actionSearchAll", "actionDeleteQuestion"]),
     moveToDetail(qnaId) {
       this.$router.push({ name: "qnaDetail", params: { qnaId: qnaId } });
     },
     moveToRegist() {
       this.$router.push({ name: "qnaRegist" });
+    },
+    isAuthor(question) {
+      return question.author.id === this.getCurrentUser.id;
+    },
+    deleteQuestion(questionId) {
+      console.log("deleteQuestion call::");
+      this.actionDeleteQuestion(questionId);
     }
   }
 };
